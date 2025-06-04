@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Ranking - Memory Game</title>
+  <link rel="stylesheet" href="ranking.css">
+</head>
+<body>
+  <h1>🏆 Ranking dos Melhores Tempos</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Posição</th>
+        <th>Jogador</th>
+        <th>Tempo (s)</th>
+      </tr>
+    </thead>
+    <tbody id="ranking-body"></tbody>
+  </table>
+
+  <a href="game.html">Voltar ao Início</a>
+
+  <script>
+    const rankingBody = document.getElementById('ranking-body');
+    const ranking = JSON.parse(localStorage.getItem('ranking')) || [];
+
+    ranking.forEach((entry, index) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${entry.name}</td>
+        <td>${entry.time}</td>
+      `;
+      rankingBody.appendChild(row);
+    });
+  </script>
+</body>
+</html>
